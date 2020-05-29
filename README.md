@@ -26,9 +26,11 @@ We used `12` popular DL `models` based on `6` `datasets` including both images a
 | VGG16       | ImageNet<sup>2</sup> | Keras applications tutorial<sup>3</sup>                      |
 | VGG19       | ImageNet<sup>2</sup> | Keras applications tutorial<sup>3</sup>                      |
 | Xception    | ImageNet<sup>2</sup> | Keras applications tutorial<sup>3</sup>                      |
+
 1.The first 5 models are trained using existing repositories while the last 7 models in ImageNet are obtained directly using the API provided by Keras.
 
 2.We sampled 1500 images from ImageNet and you can also sample your own images from the [ImageNet validation dataset](http://www.image-net.org/challenges/LSVRC/2012/nonpub-downloads). 
+
 3.Keras applications tutorial can be found in: https://keras.io/api/applications/
 
 4.All model files and two regression dataset and ImageNet dataset we sampled can be access in [OneDrive](https://1drv.ms/u/s!Aj6dGBsJFcs0jnXVUfAtsEjdUW_T?e=ezo32C)
@@ -42,11 +44,11 @@ We share the link of each library and docker image used in `LEMON`.
 
 | Experiment ID | Tensorflow                                                | Theano                                          | CNTK                                                         | MXNet                                                      | CUDA                                                         |
 | ------------- | --------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ |
-| E1            | [1.14.0](https://pypi.org/project/tensorflow-gpu/1.14.0/) | [1.0.4](https://pypi.org/project/Theano/1.0.4/) | [2.7.0](https://pypi.org/project/cntk-gpu/2.7/)              | [1.5.1](https://pypi.org/project/mxnet-cu101/1.5.1.post0/) | [10.1](docker pull nvidia/cuda:10.1-cudnn7-devel-ubuntu16.04) |
-| E2            | [1.13.1](https://pypi.org/project/tensorflow-gpu/1.13.1/) | [1.0.3](https://pypi.org/project/Theano/1.0.3/) | [2.6.0](https://pypi.org/project/cntk-gpu/2.6/)              | [1.4.1](https://pypi.org/project/mxnet-cu100/1.4.1/)       | [10.0](docker pull nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04) |
-| E3            | [1.12.0](https://pypi.org/project/tensorflow-gpu/1.12.0/) | [1.0.2](https://pypi.org/project/Theano/1.0.2/) | [2.5.1](https://pypi.org/project/cntk-gpu/2.5.1/)            | [1.3.1](https://pypi.org/project/mxnet-cu90/1.3.1/)        | [9.0](docker pull nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04)  |
-| E4            | [1.11.0](https://pypi.org/project/tensorflow-gpu/1.11.0/) | [1.0.1](https://pypi.org/project/Theano/1.0.1/) | [2.4.0](https://docs.microsoft.com/en-us/cognitive-toolkit/Setup-Linux-Python?tabs=cntkpy24) | [1.2.1](https://pypi.org/project/mxnet-cu90/1.2.1.post1/)  | [9.0](docker pull nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04)  |
-| E5            | [1.10.0](https://pypi.org/project/tensorflow-gpu/1.10.0/) | [1.0.0](https://pypi.org/project/Theano/1.0.0/) | [2.3.1](https://docs.microsoft.com/en-us/cognitive-toolkit/Setup-Linux-Python?tabs=cntkpy231) | [1.1.0](https://pypi.org/project/mxnet-cu90/1.1.0/)        | [9.0](docker pull nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04)  |
+| E1            | [1.14.0](https://pypi.org/project/tensorflow-gpu/1.14.0/) | [1.0.4](https://pypi.org/project/Theano/1.0.4/) | [2.7.0](https://pypi.org/project/cntk-gpu/2.7/)              | [1.5.1](https://pypi.org/project/mxnet-cu101/1.5.1.post0/) | [10.1](https://hub.docker.com/r/nvidia/cuda/tags?page=1&name=10.1-cudnn7-devel-ubuntu16.04) |
+| E2            | [1.13.1](https://pypi.org/project/tensorflow-gpu/1.13.1/) | [1.0.3](https://pypi.org/project/Theano/1.0.3/) | [2.6.0](https://pypi.org/project/cntk-gpu/2.6/)              | [1.4.1](https://pypi.org/project/mxnet-cu100/1.4.1/)       | [10.0](https://hub.docker.com/r/nvidia/cuda/tags?page=1&name=10.0-cudnn7-devel-ubuntu16.04) |
+| E3            | [1.12.0](https://pypi.org/project/tensorflow-gpu/1.12.0/) | [1.0.2](https://pypi.org/project/Theano/1.0.2/) | [2.5.1](https://pypi.org/project/cntk-gpu/2.5.1/)            | [1.3.1](https://pypi.org/project/mxnet-cu90/1.3.1/)        | [9.0](https://hub.docker.com/r/nvidia/cuda/tags?page=1&name=9.0-cudnn7-devel-ubuntu16.04) |
+| E4            | [1.11.0](https://pypi.org/project/tensorflow-gpu/1.11.0/) | [1.0.1](https://pypi.org/project/Theano/1.0.1/) | [2.4.0](https://docs.microsoft.com/en-us/cognitive-toolkit/Setup-Linux-Python?tabs=cntkpy24) | [1.2.1](https://pypi.org/project/mxnet-cu90/1.2.1.post1/)  | [9.0](https://hub.docker.com/r/nvidia/cuda/tags?page=1&name=9.0-cudnn7-devel-ubuntu16.04) |
+| E5            | [1.10.0](https://pypi.org/project/tensorflow-gpu/1.10.0/) | [1.0.0](https://pypi.org/project/Theano/1.0.0/) | [2.3.1](https://docs.microsoft.com/en-us/cognitive-toolkit/Setup-Linux-Python?tabs=cntkpy231) | [1.1.0](https://pypi.org/project/mxnet-cu90/1.1.0/)        | [9.0](https://hub.docker.com/r/nvidia/cuda/tags?page=1&name=9.0-cudnn7-devel-ubuntu16.04) |
 
 \* All libraries should be  `GPU-supported` version
 
