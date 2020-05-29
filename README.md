@@ -14,11 +14,11 @@ We used `12` popular DL `models` based on `6` `datasets` including both images a
 
 | Model       | Dataset              | Related link<sup>1</sup>                                     |
 | ----------- | -------------------- | ------------------------------------------------------------ |
-| AlexNet     | CIFAR-10             | https://github.com/toxtli/alexnet-cifar-10-keras-jupyter/blob/master/alexnet_test1.ipynb |
-| LeNet5      | Fashion-MNIST        | https://colab.research.google.com/github/margaretmz/deep-learning/blob/master/fashion_mnist_keras.ipynb |
-| LeNet5      | MNIST                | https://github.com/lucaaslb/lenet5-mnist                     |
-| LSTM-1      | Sine-Wave            | https://github.com/StevenZxy/CIS400/tree/f69489c0624157ae86b5d8ddb1fa99c89a927256/code/LSTM-Neural-Network-for-Time-Series-Prediction-master |
-| LSTM-2      | Stock-Price          | https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject |
+| AlexNet     | CIFAR-10             | [alexnet-cifar-10-keras-jupyter](https://github.com/toxtli/alexnet-cifar-10-keras-jupyter/blob/master/alexnet_test1.ipynb) |
+| LeNet5      | Fashion-MNIST        | [fashion_mnist_keras](https://colab.research.google.com/github/margaretmz/deep-learning/blob/master/fashion_mnist_keras.ipynb) |
+| LeNet5      | MNIST                | [lenet5-mnist](https://github.com/lucaaslb/lenet5-mnist)     |
+| LSTM-1      | Sine-Wave            | [LSTM-Neural-Network-for-Time-Series-Prediction](https://github.com/StevenZxy/CIS400/tree/f69489c0624157ae86b5d8ddb1fa99c89a927256/code/LSTM-Neural-Network-for-Time-Series-Prediction-master) |
+| LSTM-2      | Stock-Price          | [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) |
 | ResNet50    | ImageNet<sup>2</sup> | Keras applications tutorial<sup>3</sup>                      |
 | MobileNetV1 | ImageNet<sup>2</sup> | Keras applications tutorial<sup>3</sup>                      |
 | InceptionV3 | ImageNet<sup>2</sup> | Keras applications tutorial<sup>3</sup>                      |
@@ -27,13 +27,13 @@ We used `12` popular DL `models` based on `6` `datasets` including both images a
 | VGG19       | ImageNet<sup>2</sup> | Keras applications tutorial<sup>3</sup>                      |
 | Xception    | ImageNet<sup>2</sup> | Keras applications tutorial<sup>3</sup>                      |
 
-1.The first 5 models are trained using existing repositories while the last 7 models in ImageNet are obtained directly using the API provided by Keras.
+1:  The first 5 models are trained using existing repositories while the last 7 models in ImageNet are obtained directly using the API provided by Keras.
 
-2.We sampled 1500 images from ImageNet and you can also sample your own images from the [ImageNet validation dataset](http://www.image-net.org/challenges/LSVRC/2012/nonpub-downloads). 
+2: We sampled 1500 images from ImageNet and you can also sample your own images from the [ImageNet validation dataset](http://www.image-net.org/challenges/LSVRC/2012/nonpub-downloads). 
 
-3.Keras applications tutorial can be found in: https://keras.io/api/applications/
+3: Keras applications tutorial can be found in: https://keras.io/api/applications/
 
-4.All model files and two regression dataset and ImageNet dataset we sampled can be access in [OneDrive](https://1drv.ms/u/s!Aj6dGBsJFcs0jnXVUfAtsEjdUW_T?e=ezo32C)
+4: All model files and two regression dataset and ImageNet dataset we sampled can be access in [OneDrive](https://1drv.ms/u/s!Aj6dGBsJFcs0jnXVUfAtsEjdUW_T?e=ezo32C)
 
 
 ### Libraries
@@ -56,11 +56,11 @@ We share the link of each library and docker image used in `LEMON`.
 
 ### Environment 
 
-We conducted 5 experiments in `LEMON` of which the library and CUDA version information are as described above. In order to facilitate other researchers to reproduce `LEMON`, we provide a `docker`  image for the `E1` experiment. It can be easily obtained by the following command (**Note: [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) is required. **)
+We conducted 5 experiments in `LEMON` of which the library and CUDA version information are as described above. In order to facilitate other researchers to reproduce `LEMON`, we provide a `docker`  image for the `E1` experiment. It can be easily obtained by the following command. **Note: [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) is required. **
 
 **Step 0:** Install `nvidia-docker2`. You can use this [instruction](https://codepyre.com/2019/01/installing-nvidia-docker2-on-ubuntu-18.0.4/) to install it.
 
-**Step 1: **using the following command to pull the docker image we released for `E1` and create a container for it.
+**Step 1: ** Using the following command to pull the docker image we released for `E1` and create a container for it.
 
 > docker pull yenming1227/lemon:e1
 >
@@ -70,7 +70,7 @@ Then you will enter a container.
 
 **Note: If your server is using http proxy, you should configure proxy in the container just as you did in your server before**
 
-**Step 2:** Create five virtual environments as shown below in your docker container.
+**Step 2:**  Create five virtual environments as shown below in your docker container.
 
  ```shell
 # tensorflow
