@@ -56,11 +56,13 @@ We share the link of each library and docker image used in `LEMON`.
 
 ### Environment 
 
-We conducted 5 experiments in `LEMON` of which the library and CUDA version information are as described above. In order to facilitate other researchers to reproduce `LEMON`, we provide a `docker`  image for the `E1` experiment. It can be easily obtained by the following command. **Note: [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) is required. **
+We conducted 5 experiments in `LEMON` of which the library and CUDA version information are as described above. In order to facilitate other researchers to reproduce `LEMON`, we provide a `docker`  image for the `E1` experiment. It can be easily obtained by the following command. 
+
+**Note: [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) is required!. **
 
 **Step 0:** Install `nvidia-docker2`. You can use this [instruction](https://codepyre.com/2019/01/installing-nvidia-docker2-on-ubuntu-18.0.4/) to install it.
 
-**Step 1: ** Using the following command to pull the docker image we released for `E1` and create a container for it.
+**Step 1:** Using the following command to pull the docker image we released for `E1` and create a container for it.
 
 > docker pull yenming1227/lemon:e1
 >
