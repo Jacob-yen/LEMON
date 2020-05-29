@@ -58,7 +58,7 @@ We share the link of each library and docker image used in `LEMON`.
 
 We conducted 5 experiments in `LEMON` of which the library and CUDA version information are as described above. In order to facilitate other researchers to reproduce `LEMON`, we provide a `docker`  image for the `E1` experiment. It can be easily obtained by the following command. (**Note: nvidia-docker2 is required!**) 
 
-**Step 0:** Install [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker). You can use this [instruction](https://codepyre.com/2019/01/installing-nvidia-docker2-on-ubuntu-18.0.4/) to install it.
+**Step 0:** Please Install [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker). You can use this [instruction](https://codepyre.com/2019/01/installing-nvidia-docker2-on-ubuntu-18.0.4/) to install it.
 
 **Step 1:** Using the following command to pull the docker image we released for `E1` and create a container for it.
 
@@ -198,6 +198,8 @@ The above command shows how to generate mutants and calculating inconsistencies 
 This command shows the way to perform localization in `LEMON`. The final  bug reports will be stored in path `/your/path/save_experiment_result/bug_list.txt` 
 
 In this `demo run`, you may get `6` suspected bugs in  `bug_list.txt`. If you want to reproduce all bugs reported in paper (exclude 1 Keras performance bug), you should configure  the path in `experiments.conf` and run with it.
+
+-----
 
 ### Extension
 
