@@ -1,5 +1,8 @@
 import numpy as np
 from scripts.logger.lemon_logger import Logger
+np.random.seed(20200501)
+
+
 class Roulette:
     class Mutant:
         def __init__(self, name, selected=0):

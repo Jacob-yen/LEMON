@@ -18,6 +18,8 @@ import pickle
 import pandas as pd
 from itertools import combinations,product
 from datetime import datetime
+np.random.seed(20200501)
+
 
 def get_model_inputs(idntfrs):
     idntfrs_set = set()

@@ -12,11 +12,11 @@ import pickle
 from scripts.tools import utils
 import shutil
 import re
-import warnings
 import datetime
 import configparser
-
 import warnings
+
+np.random.seed(20200501)
 warnings.filterwarnings("ignore")
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = '2'
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"

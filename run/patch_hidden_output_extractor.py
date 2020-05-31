@@ -5,7 +5,6 @@
 """
 import sys
 import os
-import numpy as np
 import pickle
 import argparse
 from scripts.tools.utils import DataUtils,ModelUtils

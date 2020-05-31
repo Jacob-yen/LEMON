@@ -1,11 +1,14 @@
 import numpy as np
 import os
 import warnings
+np.random.seed(20200501)
 warnings.filterwarnings("ignore")
 warnings.filterwarnings("ignore")
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = '2' # 只显示 warning 和 Error
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
+
 class ActivationUtils:
     def __init__(self):
         self.available_activations = ActivationUtils.available_activations()

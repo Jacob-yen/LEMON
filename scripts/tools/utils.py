@@ -6,6 +6,8 @@ import warnings
 import datetime
 import configparser
 import numpy as np
+
+np.random.seed(20200501)
 warnings.filterwarnings("ignore")
 """Set seed and Init cuda"""
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = '2' # 只显示 warning 和 Error
