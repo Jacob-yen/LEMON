@@ -127,46 +127,13 @@ LEMON uses redis to store intermediate outputs and exchange data between differe
 >
 > ./redis-server ../redis.conf
 
-### Configuration
-
-Before running, please configure the path used in `LEMON`. All options are defined in `config/experiments.conf`
-
-```
-[parameters]
-mutate_ops=WS GF NEB NAI NS ARem ARep LA LC LR LS MLA
-metrics=D_MAD
-exps=exp= alexnet-cifar10 xception-imagenet lenet5-fashion-mnist lenet5-mnist resnet50-imagenet vgg16-imagenet vgg19-imagenet densenet121-imagenet mobilenet.1.00.224-imagenet inception.v3-imagenet lstm0-sinewave lstm2-price
-
-# Path of the initial models
-# Name model file as 'alexnet-cifar10_origin.h5'
-origin_model_dir=/data/origin_model
-
-# Path of the ImageNet and regression dataset
-dataset_dir=/data/dataset
-
-# Modifying the backends is not recommended.
-# There is some hard-code in the program about the backends
-backend=tensorflow theano cntk mxnet
-python_prefix = /root/anaconda3/envs/
-output_dir = /data/lemon_outputs
-mutate_num=2
-test_size=10
-pool_size=50
-mutate_ratio=0.3
-gpu_ids = 0,1
-threshold = 0.4
-
-[redis]
-host= 127.0.0.1 # your-redis-server
-port= 6379 # redis port
-redis_db= 0 # db number
-```
-
 ### Running LEMON
 
-The `LEMON` artifacts are well organized, and researchers can simply run `LEMON` with the following command (all commands are executed in `LEMON` root path)
+The `LEMON` artifacts are well organized, and researchers can simply run `LEMON` with the following command 
 
-**Note: Since we conducted five large scale experiments (generating 100 mutants for each of the 12 initial models and analyzing inconsistencies on 1500 inputs and locating bugs), it could not be completed within 48  hours. Therefore, we provide a demo run, which can be completed within 1 hour.**
+**Note: Since we conducted five large scale experiments (generating 100 mutants for each of the 12 initial models and analyzing inconsistencies on 1500 inputs and locating bugs), it could not be completed within 48  hours. Therefore, we provide a `demo run`, which can be completed within 1 hour.**
+
+**All commands are executed in `LEMON` root path:**
 
 > source activate lemon
 
