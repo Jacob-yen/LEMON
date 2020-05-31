@@ -60,17 +60,21 @@ We conducted 5 experiments in `LEMON` of which the library and CUDA version info
 
 **Step 0:** Please Install [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker). You can use this [instruction](https://codepyre.com/2019/01/installing-nvidia-docker2-on-ubuntu-18.0.4/) to install it.
 
-**Step 1:** Using the following command to pull the docker image we released for `E1` and create a container for it.
+**Step 1:** Clone the repository. Download the dataset and models from  [OneDrive](https://1drv.ms/u/s!Aj6dGBsJFcs0jnXVUfAtsEjdUW_T?e=ezo32C). Unzip them to `/your/local/path/` , e.g. `/your/local/path/origin_model` and `/your/local/path/dataset`. (`/your/ local/path/` should be the absolute path on your server, e.g. `/home/user_xxx/`)
+
+**Step 2:** Using the following command to pull the docker image we released for `E1` and create a container for it. 
 
 > docker pull yenming1227/lemon:e1
 >
-> docker run --runtime=nvidia -it -v /your/local/path/:/data --name "lemon_exp01" yenming1227/lemon:e1 /bin/bash
+> docker run --runtime=nvidia -it -v **/your/local/path/**:/data --name "lemon_exp01" yenming1227/lemon:e1 /bin/bash
 
-Then you will enter a container.
+Then you will enter a container.(Remember to change `/your/local/path/` to the real path! ^_^)
 
 **Note: If your server is using http proxy, you should configure proxy in the container just as you did in your server before**
 
-**Step 2:**  Create five virtual environments as shown below in your docker container.
+**Step 3:** Create five virtual environments as shown below in your docker container.
+
+**Note: Please copy the installation command line by line to prevent some commands from being skipped.**
 
  ```shell
 # tensorflow
@@ -131,50 +135,31 @@ Before running, please configure the path used in `LEMON`. All options are defin
 [parameters]
 mutate_ops=WS GF NEB NAI NS ARem ARep LA LC LR LS MLA
 metrics=D_MAD
-
-# Initial Models and dataset 
-exp= alexnet-cifar10 xception-imagenet lenet5-fashion-mnist lenet5-mnist resnet50-imagenet vgg16-imagenet vgg19-imagenet densenet121-imagenet mobilenet.1.00.224-imagenet inception.v3-imagenet lstm0-sinewave lstm2-price
+exps=exp= alexnet-cifar10 xception-imagenet lenet5-fashion-mnist lenet5-mnist resnet50-imagenet vgg16-imagenet vgg19-imagenet densenet121-imagenet mobilenet.1.00.224-imagenet inception.v3-imagenet lstm0-sinewave lstm2-price
 
 # Path of the initial models
 # Name model file as 'alexnet-cifar10_origin.h5'
-origin_model_dir=/your/path/save_origin_model
+origin_model_dir=/data/origin_model
 
 # Path of the ImageNet and regression dataset
-dataset_dir=/your/path/save_dataset
+dataset_dir=/data/dataset
 
-# Modifying the backends option is not recommended.
+# Modifying the backends is not recommended.
 # There is some hard-code in the program about the backends
 backend=tensorflow theano cntk mxnet
-
-# Prefix of Anaconda virtual environment path 
 python_prefix = /root/anaconda3/envs/
-
-# Path to save results
-output_dir = /your/path/save_experiment_result
-
-# Number of mutant
-mutate_num=100
-
-# Number of inputs(maximum 1500)
-test_size=1500
-
-# Seed pool size
+output_dir = /data/lemon_outputs
+mutate_num=2
+test_size=10
 pool_size=50
-
-# Mutate ratio
 mutate_ratio=0.3
-
-#GPU ID (At most 2 GPUs)
 gpu_ids = 0,1
-
-# Inconsistency threshold
 threshold = 0.4
 
 [redis]
 host= 127.0.0.1 # your-redis-server
 port= 6379 # redis port
 redis_db= 0 # db number
-
 ```
 
 ### Running LEMON
@@ -189,7 +174,7 @@ The `LEMON` artifacts are well organized, and researchers can simply run `LEMON`
 
 > python -u -m run.mutation_executor demo.conf
 
-The above command shows how to generate mutants and calculating inconsistencies in `LEMON`. `demo.conf` is the configuration file we provided for `demo run`. Of course you should configure the self-defined path information (e.g. dataset_dir ) in it as described in `experiments.conf`.
+The above command shows how to generate mutants and calculating inconsistencies in `LEMON`. `demo.conf` is the configuration file we provided for `demo run`. 
 
 **Localization:**
 
@@ -197,7 +182,7 @@ The above command shows how to generate mutants and calculating inconsistencies 
 
 This command shows the way to perform localization in `LEMON`. The final  bug reports will be stored in path `/your/path/save_experiment_result/bug_list.txt` 
 
-In this `demo run`, you may get `6` suspected bugs in  `bug_list.txt`. If you want to reproduce all bugs reported in paper (exclude 1 Keras performance bug), you should configure  the path in `experiments.conf` and run with it.
+In this `demo run`, you may get `6` suspected bugs in  `bug_list.txt`. If you want to reproduce all bugs reported in paper (exclude 1 Keras performance bug), you should  run with `experiments.conf`.
 
 -----
 
