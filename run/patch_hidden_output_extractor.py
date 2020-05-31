@@ -12,6 +12,9 @@ from scripts.logger.lemon_logger import Logger
 import configparser
 import warnings
 import traceback
+import numpy as np
+
+np.random.seed(20200501)
 warnings.filterwarnings("ignore")
 
 
