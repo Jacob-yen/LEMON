@@ -29,11 +29,21 @@ We used `12` popular DL `models` based on `6` `datasets` including both images a
 
 1:  The first 5 models are trained using existing repositories while the last 7 models in ImageNet are obtained directly using the API provided by Keras.
 
-2: We sampled 1500 images from ImageNet and you can also sample your own images from the [ImageNet validation dataset](http://www.image-net.org/challenges/LSVRC/2012/nonpub-downloads). 
+2: We sampled 1500 images from ImageNet and you could obtain them from `sampled_imagenet-1500.npz`. You can also sample your own images from the [ImageNet validation dataset](http://www.image-net.org/challenges/LSVRC/2012/nonpub-downloads). 
 
 3: Keras applications tutorial can be found in: https://keras.io/api/applications/
 
 4: All model files and two regression dataset and ImageNet dataset we sampled can be access in [OneDrive](https://1drv.ms/u/s!Aj6dGBsJFcs0jnXVUfAtsEjdUW_T?e=ezo32C)
+
+**NOTE**: LEMON use 6 dataset, and 3 of them could be directly obtained from their homepages  ( [CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html),  [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist), [MNIST](http://yann.lecun.com/exdb/mnist/) ) or accessed by [Keras API](https://keras.io/api/datasets/). We only upload the ImageNet dataset sampled by LEMON and two datasets collected from  GitHub.
+
+In `dataset.zip`, there are 3 files:
+
+> sinewave.csv: dataset of LSTM-1
+> DIS.csv : dataset of LSTM-2
+> sampled_imagenet-1500.npz:  dataset  samples by LEMON from  ImageNet 
+
+In `origin_model.zip`, there are 12 models used in LEMON. 
 
 
 ### Libraries
@@ -60,13 +70,14 @@ We conducted 5 experiments in `LEMON` of which the library and CUDA version info
 
 **Step 0:** Please Install [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker). You can use this [instruction](https://codepyre.com/2019/01/installing-nvidia-docker2-on-ubuntu-18.0.4/) to install it.
 
-**Step 1:** Clone the repository. Download the dataset and models from  [OneDrive](https://1drv.ms/u/s!Aj6dGBsJFcs0jnXVUfAtsEjdUW_T?e=ezo32C). Save the code and unzip datasets and models to `/your/local/path/` , e.g. `/your/local/path/origin_model` and `/your/local/path/dataset`. (`/your/ local/path/` should be the absolute path on your server, e.g. `/home/user_xxx/`)
+**Step 1:** Clone the repository. Download the dataset and models from  [OneDrive](https://1drv.ms/u/s!Aj6dGBsJFcs0jnXVUfAtsEjdUW_T?e=ezo32C). Save the code and unzip datasets and models to `/your/local/path/` , e.g. `/your/local/path/origin_model` and `/your/local/path/dataset`. (`/your/local/path/` should be the absolute path on your server, e.g. `/home/user_xxx/`)
 
 **Step 2:** Using the following command to pull the docker image we released for `E1` and create a container for it. 
 
-> docker pull yenming1227/lemon:e1
->
-> docker run --runtime=nvidia -it -v **/your/local/path/**:/data --name "lemon_exp01" yenming1227/lemon:e1 /bin/bash
+```shell
+docker pull yenming1227/lemon:latest
+docker run --runtime=nvidia -it -v /your/local/path/:/data  yenming1227/lemon:latest /bin/bash
+```
 
 Then you will enter a container.(Remember to change `/your/local/path/` to the real path! ^_^)
 
@@ -123,9 +134,10 @@ source deactivate
 
 LEMON uses redis to store intermediate outputs and exchange data between different processes. We have installed redis in our docker image, you can start it with the following command:
 
-> cd  /root/redis-4.0.8/src
->
-> ./redis-server ../redis.conf
+```bash
+cd /root/redis-4.0.8/src
+./redis-server ../redis.conf
+```
 
 ### Running LEMON
 
@@ -133,29 +145,35 @@ The `LEMON` artifacts are well organized, and researchers can simply run `LEMON`
 
 **Note: We conducted five large scale experiments (generating 100 mutants for each of the 12 initial models and analyzing inconsistencies on 1500 inputs and locating bugs) and you can reproduce the bugs reported in `LEMON` by running tool with `experiments.conf`. However, it could not be completed within `48`  hours. Therefore, we provide a `demo run`, which can be completed within `1` hour if you running the tool with `demo.conf`.**
 
-**All commands are executed in `LEMON` root path:**
+```shell
+cd /LEMON
+git pull 
+source activate lemon
+```
 
-> source activate lemon
+We really  recommend you use `git pull` to update `LEMON` to the latest version.
 
 **Mutation:**
 
-> python -u -m run.mutation_executor demo.conf
+```shell
+python -u -m run.mutation_executor demo.conf
+```
 
 The above command shows how to generate mutants and calculating inconsistencies in `LEMON`. `demo.conf` is the configuration file we provided for `demo run`. 
 
 **Localization:**
 
-> python -u -m run.localization_executor demo.conf
+```shell
+python -u -m run.localization_executor demo.conf
+```
 
 This command shows the way to perform localization in `LEMON`. The final  bug reports will be stored in path `/data/lemon_outputs/bug_list.txt` 
-
-In this `demo run`, you may get about `7` suspected bugs in  `bug_list.txt`. (Due to the randomness in the process of generating mutants, the number of bugs may change.)
 
 -----
 
 ### Extension
 
-`LEMON` also supports researchers to switch to other models and datasets. You only need to focus on the code snippets of the data processing part in `DataUtils.get_data_by_exp` in `scripts/tools/utils/py`.
+`LEMON` also supports researchers to switch to other models and datasets. You only need to focus on the code snippets of the data processing part in `DataUtils.get_data_by_exp` in `scripts/tools/utils.py`.
 
 ```
 # TODO: Add your own data preprocessing here
