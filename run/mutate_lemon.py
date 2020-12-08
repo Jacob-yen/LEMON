@@ -132,9 +132,9 @@ def _generate_and_predict(res_dict,filename,mutate_num,mutate_ops,test_size,exp,
                             if roulette.pool_size >= pool_size:
                                 roulette.pop_one_mutant()
                             roulette.add_mutant(new_seed_name)
+                            last_inconsistency = inconsistency
                         else:
                             mutate_logger.warning("WARN: {} would not be put into pool".format(new_seed_name))
-                        last_inconsistency = inconsistency
                         mutate_logger.info("SUCCESS:{} pass testing!".format(new_seed_name))
                     else:
                         mutate_op_invalid_history[selected_op] += 1
