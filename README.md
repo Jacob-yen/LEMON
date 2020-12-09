@@ -196,7 +196,7 @@ Authors information:
 | Name          | Email Address          | **Github id** |
 | ------------- | ---------------------- | ------------- |
 | Zan Wang      | wangzan@tju.edu.cn     | tjuwangzan    |
-| Ming Yan      | yanming@tju.edu.cn     | jacob-yen     |
+| Ming Yan      | yanming@tju.edu.cn     | Jacob-yen     |
 | Junjie Chen * | junjiechen@tju.edu.cn  | JunjieChen    |
 | Shuang Liu    | shuang.liu@tju.edu.cn  | AbigailLiu    |
 | Dongdi Zhang  | zhangdongdi@tju.edu.cn | Dandy-John    |
