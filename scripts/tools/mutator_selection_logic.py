@@ -97,12 +97,14 @@ class MCMC:
             return rate
 
     def __init__(self, mutate_ops=None):
-        self.p = 0.08
+        self.mylogger = Logger()
+        self.mylogger.info(f"Using {self.__class__.__name__} as selection strategy!")
         if mutate_ops is None:
             from scripts.mutation.model_mutation_generators import all_mutate_ops
             mutate_ops = all_mutate_ops()
+        self.p = 1/len(mutate_ops)
         self._mutators = [self.Mutator(name=op) for op in mutate_ops]
-
+        
     @property
     def mutators(self):
         mus = {}

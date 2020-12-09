@@ -232,7 +232,7 @@ class ModelUtils:
         return indices
 
     @staticmethod
-    def is_valid_model(inputs_backends, threshold=0.95):
+    def is_valid_model(inputs_backends,backends_nums, threshold=0.95):
         invalid_status_num = 0
         inputs_values = list(inputs_backends.values())
         # results like (1500,1) is valid
@@ -251,7 +251,7 @@ class ModelUtils:
                     if indice_map[indice] > len(inputs) * threshold:
                         invalid_status_num += 1
 
-            return False if invalid_status_num == 3 else True
+            return False if invalid_status_num == backends_nums else True
 
 
 class DataUtils:

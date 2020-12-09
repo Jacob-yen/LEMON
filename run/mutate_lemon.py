@@ -117,7 +117,7 @@ def _generate_and_predict(res_dict,filename,mutate_num,mutate_ops,test_size,exp,
                 if predict_status :
                     #mutant_counter += 1
                     mutant_history.append(new_seed_name)
-                    if utils.ModelUtils.is_valid_model(model_outputs):
+                    if utils.ModelUtils.is_valid_model(inputs_backends=model_outputs,backends_nums=len(backends)):
                         mutant_counter += 1
                         # The sum of the values of the inconsistency boost of the new model on the three backends
                         delta = 0
