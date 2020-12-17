@@ -1,7 +1,7 @@
 import numpy as np
 from scripts.logger.lemon_logger import Logger
+import random
 np.random.seed(20200501)
-
 
 class Roulette:
     class Mutant:
@@ -13,7 +13,8 @@ class Roulette:
         def score(self):
             return 1.0 / (self.selected + 1)
 
-    def __init__(self, mutant_names=None):
+    def __init__(self, mutant_names=None, capacity=101):
+        self.capacity = capacity
         if mutant_names is None:
             self._mutants = []
         else:
@@ -33,9 +34,15 @@ class Roulette:
     def add_mutant(self, mutant_name, total=0):
         self._mutants.append(Roulette.Mutant(mutant_name, total))
 
-    def pop_one_mutant(self,):
+    def pop_one_mutant(self, ):
         np.random.shuffle(self._mutants)
         self._mutants.pop()
+
+    def is_full(self):
+        if len(self._mutants) >= self.capacity:
+            return True
+        else:
+            return False
 
     def choose_mutant(self):
         sum = 0
@@ -50,10 +57,12 @@ class Roulette:
 
 class RandomMutant:
     class Mutant:
-        def __init__(self, name):
+        def __init__(self, name, selected=0):
             self.name = name
+            self.selected = selected
 
-    def __init__(self, mutant_names=None):
+    def __init__(self, mutant_names=None, capacity=101):
+        self.capacity = capacity
         if mutant_names is None:
             self._mutants = []
         else:
@@ -70,7 +79,7 @@ class RandomMutant:
     def pool_size(self):
         return len(self._mutants)
 
-    def pop_one_mutant(self,):
+    def pop_one_mutant(self, ):
         np.random.shuffle(self._mutants)
         self._mutants.pop()
 
@@ -81,9 +90,15 @@ class RandomMutant:
         index = np.random.randint(0, len(self._mutants))
         return self._mutants[index].name
 
+    def is_full(self):
+        if len(self._mutants) >= self.capacity:
+            return True
+        else:
+            return False
+
 class MCMC:
     class Mutator:
-        def __init__(self, name, total=0,delta_bigger_than_zero=0,epsilon=1e-7):
+        def __init__(self, name, total=0, delta_bigger_than_zero=0, epsilon=1e-7):
             self.name = name
             self.total = total
             self.delta_bigger_than_zero = delta_bigger_than_zero
@@ -92,8 +107,8 @@ class MCMC:
         @property
         def score(self, epsilon=1e-7):
             mylogger = Logger()
-            rate = self.delta_bigger_than_zero / (self.total+epsilon)
-            mylogger.info("Name:{}, rate:{}".format(self.name,rate))
+            rate = self.delta_bigger_than_zero / (self.total + epsilon)
+            mylogger.info("Name:{}, rate:{}".format(self.name, rate))
             return rate
 
     def __init__(self, mutate_ops=None):
@@ -102,9 +117,9 @@ class MCMC:
         if mutate_ops is None:
             from scripts.mutation.model_mutation_generators import all_mutate_ops
             mutate_ops = all_mutate_ops()
-        self.p = 1/len(mutate_ops)
+        self.p = 1 / len(mutate_ops)
         self._mutators = [self.Mutator(name=op) for op in mutate_ops]
-        
+
     @property
     def mutators(self):
         mus = {}
@@ -138,12 +153,17 @@ class MCMC:
                 return i
         return -1
 
+
 class RandomMutator:
     class Mutator:
-        def __init__(self, name):
+        def __init__(self, name, total=0):
             self.name = name
+            self.total = total
+            self.delta_bigger_than_zero = 0
 
     def __init__(self, mutate_ops=None):
+        self.mylogger = Logger()
+        self.mylogger.info(f"Using {self.__class__.__name__} as selection strategy!")
         self._mutators = [self.Mutator(name=op) for op in mutate_ops]
 
     @property
@@ -153,7 +173,7 @@ class RandomMutator:
             mus[mu.name] = mu
         return mus
 
-    def choose_mutator(self):
+    def choose_mutator(self, mu1=None):
         return self._mutators[np.random.randint(0, len(self._mutators))].name
 
     def index(self, mutator_name):
@@ -161,18 +181,3 @@ class RandomMutator:
             if mu.name == mutator_name:
                 return i
         return -1
-
-
-class Random:
-    def __init__(self, mutate_ops=None):
-        if mutate_ops is None:
-            from scripts.mutation.model_mutation_generators import all_mutate_ops
-            mutate_ops = all_mutate_ops()
-        self._mutators = mutate_ops
-
-    def choose_mutator(self):
-        return np.random.permutation(self._mutators)[0]
-
-
-if __name__ == '__main__':
-    pass

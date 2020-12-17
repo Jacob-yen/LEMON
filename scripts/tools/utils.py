@@ -470,19 +470,9 @@ class MetricsUtils:
         ]
 
     @staticmethod
-    def wilcoxon_metric(y1_pred_list, y2_pred_list,y_true=None):
-        import scipy.stats
-        max_prob_indice = [np.argsort(y1_pred)[-1] for y1_pred in y1_pred_list]
-        y1 = [y1_pred_list[i][max_prob_indice[i]] for i in range(len(max_prob_indice))]
-        y2 = [y2_pred_list[i][max_prob_indice[i]] for i in range(len(max_prob_indice))]
-        return scipy.stats.ranksums(y1, y2)
-
-    @staticmethod
     def get_all_metrics():
         metrics_dict = {}
         metrics_dict['D_MAD'] = MetricsUtils.D_MAD_metrics
-        metrics_dict['MAD'] = MetricsUtils.delta
-        metrics_dict['Wilcoxon'] = MetricsUtils.wilcoxon_metric
         return metrics_dict
 
     @staticmethod
@@ -497,15 +487,9 @@ class MetricsUtils:
             file_name = "{}/{}_{}_result.csv".format(save_dir,exp,metrics_name)
             metrics_result_dict = lemon_results[metrics_name]
             with open(file_name, "w") as writer:
-                if metrics_name == 'Wilcoxon':
-                    for dm_k, dm_v in metrics_result_dict.items():
-                        writer.write("{}\n".format(dm_k))
-                        for bk_pair, metrics_values in dm_v.items():
-                            writer.write("{},{}\n".format(bk_pair, metrics_values))
-                else:
-                    writer.write("Mutation-Backend-Pair,Inconsistency Score\n")
-                    for dm_k,dm_v in metrics_result_dict.items():
-                        writer.write("{},{}\n".format(dm_k,dm_v))
+                writer.write("Mutation-Backend-Pair,Inconsistency Score\n")
+                for dm_k,dm_v in metrics_result_dict.items():
+                    writer.write("{},{}\n".format(dm_k,dm_v))
 
 if __name__ == '__main__':
     pass
