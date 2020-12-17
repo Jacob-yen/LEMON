@@ -1,6 +1,6 @@
 # Deep Learning Library Testing via Effective Model Generation
 
-This is the implementation repository of our upcoming ESEC/FSE 2020 paper:  **Deep Learning Library Testing via Effective Model Generation.** 
+This is the implementation repository of our ESEC/FSE 2020 paper:  **Deep Learning Library Testing via Effective Model Generation.** 
 
 ## Description
 
@@ -169,8 +169,6 @@ python -u -m run.localization_executor demo.conf
 
 This command shows the way to perform localization in `LEMON`. The final  bug reports will be stored in path `/data/lemon_outputs/bug_list.txt` 
 
------
-
 ### Extension
 
 `LEMON` also supports researchers to switch to other models and datasets. You only need to focus on the code snippets of the data processing part in `DataUtils.get_data_by_exp` in `scripts/tools/utils.py`.
@@ -188,6 +186,24 @@ Besides, you should name your model file in format ` NetworkName-DatasetName_ori
 Note: `_` and `-` can't be shown in `NetworkName`. You can replace them with `.` 
 
 For example , changing  `mobilenet_1.00_224-imagenet_origin.h5` to `mobilenet.1.00.224-imagenet_origin.h5`. 
+
+## Citation
+
+Please cite our paper if this work is helpful to you.
+```
+@inproceedings{DBLP:conf/sigsoft/WangYCLZ20,
+  author    = {Zan Wang and
+               Ming Yan and
+               Junjie Chen and
+               Shuang Liu and
+               Dongdi Zhang},
+  title     = {Deep learning library testing via effective model generation},
+  booktitle = {{ESEC/SIGSOFT} {FSE}},
+  pages     = {788--799},
+  publisher = {{ACM}},
+  year      = {2020}
+}
+```
 
 ## Contact
 
