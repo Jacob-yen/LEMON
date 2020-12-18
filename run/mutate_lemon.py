@@ -1,6 +1,6 @@
 # -*-coding:UTF-8-*-
 from scripts.logger.lemon_logger import Logger
-from scripts.tools.mutator_selection_logic import Roulette, RandomMutant, MCMC, RandomMutator
+from scripts.tools.mutator_selection_logic import Roulette, MCMC
 import argparse
 import sys
 import ast
@@ -48,8 +48,8 @@ def partially_nan_or_inf(predictions, bk_num):
 
 def get_selector_by_startegy_name(mutator_s, mutant_s):
 
-    mutant_strategy_dict = {'RANDOM':RandomMutant,"ROULETTE":Roulette}
-    mutator_strategy_dict = {"RANDOM":RandomMutator,"MCMC":MCMC}
+    mutant_strategy_dict = {"ROULETTE":Roulette}
+    mutator_strategy_dict = {"MCMC":MCMC}
     return mutator_strategy_dict[mutator_s],mutant_strategy_dict[mutant_s]
 
 
@@ -175,8 +175,7 @@ def _generate_and_predict(res_dict, filename, mutate_num, mutate_ops, test_size,
                             mutator.delta_bigger_than_zero = mutator.delta_bigger_than_zero + 1 \
                                 if delta > 0 else mutator.delta_bigger_than_zero
 
-                        if mutant_strategy == 'RANDOM' or \
-                                (mutant_strategy == 'ROULETTE' and delta > 0):
+                        if mutant_strategy == 'ROULETTE' and delta > 0:
                             # when size >= capacity:
                             # random_mutant & Roulette would drop one and add new one
                             if mutant_selector.is_full():
