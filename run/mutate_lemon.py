@@ -114,7 +114,7 @@ def _generate_and_predict(res_dict, filename, mutate_num, mutate_ops, test_size,
     mutator_selector_func, mutant_selector_func = get_selector_by_startegy_name(mutator_strategy,mutant_strategy)
     # [origin_model_name] means seed pool only contains initial model at beginning.
     mutator_selector, mutant_selector = mutator_selector_func(mutate_ops), mutant_selector_func([origin_model_name],
-                                                                                                capacity=mutate_num + 1)
+                                                                                                capacity=pool_size + 1)
 
     shutil.copy(src=filename, dst=origin_save_path)
     origin_model_status, res_dict, accumulative_inconsistency, _ = get_model_prediction(res_dict,
